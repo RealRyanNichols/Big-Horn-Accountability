@@ -36,6 +36,7 @@ export default function MethodologyPage() {
       <section className="shell methodology-layout">
         <aside className="methodology-nav">
           <a href="#labels">Status labels</a>
+          <a href="#profiles">Profile inclusion</a>
           <a href="#workflow">Publication workflow</a>
           <a href="#privacy">Privacy and intake</a>
           <a href="#tribal">Tribal sovereignty</a>
@@ -54,8 +55,19 @@ export default function MethodologyPage() {
             <div className="method-alert"><FileWarning size={19} /><p>A lawsuit, complaint, arrest, or news report is not proof of misconduct. Later dismissals, reversals, acquittals, exonerations, and corrections must be displayed with comparable prominence.</p></div>
           </section>
 
+          <section id="profiles">
+            <p className="eyebrow">02 · Profile inclusion</p>
+            <h2>A profile is an index of records—not a guilt label</h2>
+            <div className="principle-grid">
+              <article><ShieldCheck size={20} /><h3>Named in a reviewed source</h3><p>A person or institution must be explicitly connected to at least one published ledger record. Similar names and rumor are not enough.</p></article>
+              <article><ShieldCheck size={20} /><h3>Public role is relevant</h3><p>Priority goes to elected officials, public employees, law-enforcement personnel, courts, agencies, tribal offices, contractors exercising public authority, and oversight bodies.</p></article>
+              <article><ShieldCheck size={20} /><h3>Every posture travels with it</h3><p>Dismissals, government victories, neutral leadership records, denials, and limits receive the same profile visibility as allegations, findings, settlements, and convictions.</p></article>
+              <article><ShieldCheck size={20} /><h3>No clean-record inference</h3><p>Absence from the directory only means no profile has been published from this reviewed set. It is not a certification about any person or office.</p></article>
+            </div>
+          </section>
+
           <section id="workflow">
-            <p className="eyebrow">02 · Publication workflow</p>
+            <p className="eyebrow">03 · Publication workflow</p>
             <h2>A lead does not become a public record card by itself</h2>
             <ol className="workflow-list">
               <li><span>1</span><div><strong>Receive privately</strong><p>Preserve the source’s original words and permissions. A tip is labeled unverified.</p></div></li>
@@ -67,7 +79,7 @@ export default function MethodologyPage() {
           </section>
 
           <section id="privacy">
-            <p className="eyebrow">03 · Privacy and intake</p>
+            <p className="eyebrow">04 · Privacy and intake</p>
             <h2>Minimize harm while preserving useful evidence</h2>
             <div className="principle-grid">
               <article><ShieldCheck size={20} /><h3>Private by default</h3><p>Contact details and raw narratives remain in a restricted queue. Public pages use separately reviewed copies.</p></article>
@@ -85,7 +97,7 @@ export default function MethodologyPage() {
           </section>
 
           <section id="tribal">
-            <p className="eyebrow">04 · Tribal sovereignty</p>
+            <p className="eyebrow">05 · Tribal sovereignty</p>
             <h2>Tribal government is not a county department</h2>
             <p>
               Tribal, federal, state, county, city, and joint authority remain distinct in the data model.
@@ -95,7 +107,7 @@ export default function MethodologyPage() {
           </section>
 
           <section id="corrections">
-            <p className="eyebrow">05 · Corrections and fair response</p>
+            <p className="eyebrow">06 · Corrections and fair response</p>
             <h2>Corrections are part of the record</h2>
             <ul className="method-list">
               <li><CheckCircle2 size={16} /> Time-stamp material corrections and explain what changed.</li>
@@ -107,7 +119,7 @@ export default function MethodologyPage() {
           </section>
 
           <section id="authorities">
-            <p className="eyebrow">06 · Core authorities</p>
+            <p className="eyebrow">07 · Core authorities</p>
             <h2>Primary-law guardrails</h2>
             <p>These sources inform the editorial design. They are not a substitute for advice from Montana media, privacy, tribal, or litigation counsel.</p>
             <div className="authority-list">

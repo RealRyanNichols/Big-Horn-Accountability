@@ -21,6 +21,7 @@ export function SiteHeader() {
         <nav className="desktop-nav" aria-label="Primary navigation">
           <Link href="/investigations">Investigations</Link>
           <Link href="/#ledger">Records</Link>
+          <Link href="/profiles">Profiles</Link>
           <Link href="/institutions">Institutions</Link>
           <Link href="/methodology">Methodology</Link>
           <Link href="/status">Status</Link>
@@ -35,6 +36,7 @@ export function SiteHeader() {
           <nav aria-label="Mobile navigation">
             <Link href="/investigations">Investigations</Link>
             <Link href="/#ledger">Records</Link>
+            <Link href="/profiles">Profiles</Link>
             <Link href="/institutions">Institutions</Link>
             <Link href="/methodology">Methodology</Link>
             <Link href="/status">Status</Link>

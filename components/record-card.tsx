@@ -34,7 +34,7 @@ export function RecordCard({ record, detail = false }: RecordCardProps) {
         <ShareRecordButton recordId={record.id} recordSlug={record.slug} title={record.title} />
       </div>
 
-      <p className="record-id">{record.id} · {record.date}</p>
+      <p className="record-id">{record.id} · {record.date}{record.dateQualifier ? ` · ${record.dateQualifier}` : ""}</p>
       <Heading>
         {detail ? record.title : <Link href={`/records/${record.slug}`}>{record.title}</Link>}
       </Heading>

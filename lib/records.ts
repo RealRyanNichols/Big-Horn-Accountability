@@ -3,6 +3,8 @@ export type RecordStatus =
   | "Audit finding"
   | "Claim survived this stage"
   | "Criminal conviction"
+  | "Guilty plea"
+  | "Rule 68 judgment"
   | "Defendant prevailed"
   | "Filed allegation"
   | "Final merits finding"
@@ -24,6 +26,7 @@ export type InvestigationTheme =
 export type SourceKind =
   | "Official agency record"
   | "Published opinion"
+  | "Appellate disposition"
   | "Federal docket index"
   | "News report"
   | "Inspector General report"
@@ -45,6 +48,7 @@ export interface LedgerRecord {
   slug: string;
   title: string;
   date: string;
+  dateQualifier?: string;
   year: number;
   place: string;
   institution: string;
@@ -85,7 +89,7 @@ export const records: LedgerRecord[] = [
     sources: [
       {
         label: "Montana POST Council meeting materials — December 6, 2023",
-        url: "https://dojmt.gov/wp-content/uploads/12-6-23-Council-Meeting-Materials.pdf",
+        url: "https://dojmt.gov/wp-content/uploads/2024/10/12-6-23-Council-Meeting-Materials.pdf",
         kind: "Official agency record",
         checkedOn: "2026-07-14",
         note: "See the Curtin settlement transcript and quarterly case-status table in the compiled packet.",
@@ -126,31 +130,37 @@ export const records: LedgerRecord[] = [
   {
     id: "BHA-2024-001",
     slug: "crooked-arm-v-city-of-hardin",
-    title: "Federal civil-rights complaint filed against the City of Hardin and individual officers",
-    date: "2024-05-17",
+    title: "Federal civil-rights case ended with judgment after the plaintiff accepted an offer of judgment",
+    date: "2024-09-12",
     year: 2024,
     place: "Hardin / U.S. District Court for the District of Montana",
     institution: "City of Hardin / Hardin Police Department",
     officialType: "Law enforcement and municipal government",
     theme: "Law enforcement & courts",
     people: ["Donald Babbin Jr.", "Calen Curtin"],
-    status: "Filed allegation",
-    publicationState: "Current docket needed",
+    status: "Rule 68 judgment",
+    publicationState: "Reviewed",
     summary:
-      "The public docket index records a federal 42 U.S.C. § 1983 complaint and a City answer in Crooked Arm v. City of Hardin, No. 1:24-cv-00054.",
+      "The public docket records a federal 42 U.S.C. § 1983 complaint in Crooked Arm v. City of Hardin, an August 22, 2024 notice accepting an offer of judgment, and a September 12 clerk judgment that terminated the case.",
     whatItEstablishes:
-      "A lawsuit was filed and the indexed defendants included the City and named officers.",
+      "The case was filed and ended through judgment after the plaintiff accepted a Federal Rule of Civil Procedure 68 offer.",
     whatItDoesNotEstablish:
-      "A complaint states allegations; it is not proof. The reviewed public mirror does not establish the present disposition.",
-    nextVerification: "Retrieve the live PACER docket and controlling orders before describing the case as pending, settled, dismissed, or adjudicated.",
-    tags: ["Section 1983", "federal court", "civil rights", "docket refresh"],
+      "The docket index does not disclose the offer's amount or terms, and an accepted Rule 68 judgment does not by itself establish a merits finding, admission, or truth of the complaint allegations.",
+    nextVerification: "Retrieve the accepted offer and clerk judgment before describing the amount, terms, payer, or any admission.",
+    tags: ["Section 1983", "federal court", "civil rights", "Rule 68", "judgment"],
     sources: [
       {
-        label: "Public federal docket index — Crooked Arm v. City of Hardin",
+        label: "CourtListener docket — Crooked Arm v. City of Hardin",
+        url: "https://www.courtlistener.com/docket/68543332/crooked-arm-v-the-city-of-hardin/",
+        kind: "Federal docket index",
+        checkedOn: "2026-07-15",
+        note: "Docket entries 8 and 10 identify the acceptance and clerk judgment; the underlying documents and terms were not available in the reviewed mirror.",
+      },
+      {
+        label: "Justia docket index — Crooked Arm v. City of Hardin",
         url: "https://dockets.justia.com/docket/montana/mtdce/1%3A2024cv00054/76743",
         kind: "Federal docket index",
-        checkedOn: "2026-07-14",
-        note: "Mirror may lag PACER; current status must be confirmed from the live docket.",
+        checkedOn: "2026-07-15",
       },
     ],
   },
@@ -158,7 +168,7 @@ export const records: LedgerRecord[] = [
     id: "BHA-2025-001",
     slug: "bartel-v-middlestead",
     title: "Montana Supreme Court remanded sheriff-qualification litigation for further proceedings",
-    date: "2025-09-03",
+    date: "2025-09-02",
     year: 2025,
     place: "Big Horn County / Montana Supreme Court",
     institution: "Big Horn County Sheriff",
@@ -207,10 +217,17 @@ export const records: LedgerRecord[] = [
     sources: [
       {
         label: "Montana Judicial Standards Commission 2023–2024 biennial report",
-        url: "https://courts.mt.gov/courts/boards/2025_JSC-Report_69th-Leglislature.pdf",
+        url: "https://courts.mt.gov/Courts/boards/2025_JSC-Report_69th-Leglislature.pdf",
         kind: "Official agency record",
-        checkedOn: "2026-07-14",
+        checkedOn: "2026-07-15",
         note: "The complaint disposition appears in the report’s complaint table.",
+      },
+      {
+        label: "Montana Courts — 22nd Judicial District roster",
+        url: "https://courts.mt.gov/CourtLocator/22ndJudicialDistrict",
+        kind: "Official agency record",
+        checkedOn: "2026-07-15",
+        note: "Current official-role source; it does not add any adverse finding.",
       },
     ],
   },
@@ -394,24 +411,23 @@ export const records: LedgerRecord[] = [
   {
     id: "BHA-2016-002",
     slug: "matthew-v-big-horn-county-jail",
-    title: "Federal court allowed multiple Big Horn County jail-condition claims to continue past summary judgment",
-    date: "2016-09-28",
-    year: 2016,
+    title: "County jail claims survived summary judgment before the plaintiff voluntarily dismissed the case without prejudice",
+    date: "2017-05-05",
+    year: 2017,
     place: "Big Horn County / U.S. District Court for the District of Montana",
     institution: "Big Horn County Jail / Big Horn County",
     officialType: "Conditions-of-confinement litigation",
     theme: "Detention & custody",
     people: ["Lawrence Big Hair Simpson"],
-    status: "Claim survived this stage",
-    publicationState: "Current docket needed",
+    status: "Dismissed",
+    publicationState: "Reviewed",
     summary:
-      "Orders in Matthew v. Big Horn County Jail allowed multiple conditions and deliberate-indifference claims against County and jail defendants to continue while granting judgment to separate clinic defendants.",
+      "In Matthew v. Big Horn County Jail, separate clinic defendants won summary judgment while the County defendants' motion was denied. The plaintiff later moved to dismiss the remaining action, and the court dismissed it without prejudice on May 5, 2017.",
     whatItEstablishes:
-      "The court found that multiple jail claims could not be resolved against the plaintiff at dismissal or summary judgment on the record then before it.",
+      "Several County and jail claims survived the September 2016 summary-judgment stage, but no final liability judgment followed in the reviewed docket because the plaintiff voluntarily dismissed the action without prejudice.",
     whatItDoesNotEstablish:
-      "Surviving a litigation stage is not a liability finding. The final disposition was not verified in the reviewed official documents.",
-    nextVerification: "Refresh the complete federal docket and retrieve any settlement, judgment, or dismissal.",
-    tags: ["jail conditions", "medical care", "overcrowding", "summary judgment"],
+      "Denial of summary judgment is not a finding that the County defendants were liable, and a voluntary dismissal does not establish an admission, damages award, or settlement.",
+    tags: ["jail conditions", "medical care", "overcrowding", "summary judgment", "voluntary dismissal"],
     sources: [
       {
         label: "January 25, 2016 federal order",
@@ -421,9 +437,16 @@ export const records: LedgerRecord[] = [
       },
       {
         label: "September 28, 2016 federal order",
-        url: "https://www.govinfo.gov/content/pkg/USCOURTS-mtd-1_15-cv-00038/pdf/USCOURTS-mtd-1_15-cv-00038-1.pdf",
+        url: "https://law.justia.com/cases/federal/district-courts/montana/mtdce/1%3A2015cv00038/48625/90/",
         kind: "Court order",
-        checkedOn: "2026-07-14",
+        checkedOn: "2026-07-15",
+      },
+      {
+        label: "CourtListener docket — Matthew v. Big Horn County Jail",
+        url: "https://www.courtlistener.com/docket/5124622/matthew-v-big-horn-county-jail/",
+        kind: "Federal docket index",
+        checkedOn: "2026-07-15",
+        note: "The docket records the plaintiff's motion and the May 5, 2017 dismissal without prejudice.",
       },
     ],
   },
@@ -828,6 +851,419 @@ export const records: LedgerRecord[] = [
       },
     ],
   },
+  {
+    id: "BHA-2023-003",
+    slug: "fraser-v-united-states-big-horn-county",
+    title: "Civil-rights complaint alleged force against Northern Cheyenne minors at Crow Fair; the case later ended after a stipulation and dismissal",
+    date: "2023-07-07",
+    year: 2023,
+    place: "Crow Fair / U.S. District Court for the District of Montana",
+    institution: "Bureau of Indian Affairs / Big Horn County Sheriff",
+    officialType: "Federal and county law enforcement litigation",
+    theme: "Law enforcement & courts",
+    people: [],
+    status: "Stipulated dismissal",
+    publicationState: "Reviewed",
+    summary:
+      "The complaint in Fraser v. United States alleged that unnamed BIA and Big Horn County officers used force against two Northern Cheyenne minors at Crow Fair in August 2019. The docket records a May 2023 stipulation and order and a July 7, 2023 dismissal.",
+    whatItEstablishes:
+      "A federal civil-rights action was filed against federal and county defendants and the public docket later ended after a stipulation and dismissal.",
+    whatItDoesNotEstablish:
+      "The complaint's allegations are not findings, and the reviewed mirror does not establish officer identities, liability, admissions, payment, or the stipulation's terms.",
+    nextVerification: "Obtain docket entries 27 through 29 before describing the dismissal terms or characterizing the resolution as a settlement.",
+    tags: ["Crow Fair", "Northern Cheyenne", "minors", "civil rights", "stipulated dismissal"],
+    sources: [
+      {
+        label: "Fraser v. United States — complaint",
+        url: "https://www.courtlistener.com/docket/64882438/1/fraser-v-united-states/",
+        kind: "Federal docket index",
+        checkedOn: "2026-07-15",
+        note: "Complaint allegations are not treated as proven facts.",
+      },
+      {
+        label: "CourtListener docket — Fraser v. United States",
+        url: "https://www.courtlistener.com/docket/64882438/fraser-v-united-states/",
+        kind: "Federal docket index",
+        checkedOn: "2026-07-15",
+      },
+    ],
+  },
+  {
+    id: "BHA-2010-001",
+    slug: "bonogofsky-v-big-horn-county-sheriff",
+    title: "Federal court rejected Section 1983 and negligence-per-se claims arising from a sheriff response",
+    date: "2010-06-01",
+    year: 2010,
+    place: "Fort Smith / U.S. District Court for the District of Montana",
+    institution: "Big Horn County Sheriff's Department",
+    officialType: "County law enforcement litigation",
+    theme: "Law enforcement & courts",
+    people: [],
+    status: "Defendant prevailed",
+    publicationState: "Current docket needed",
+    summary:
+      "In Bonogofsky v. Big Horn County Sheriff's Department, the federal court granted partial summary judgment to the Department, dismissing negligence-per-se and Section 1983 claims after finding probable cause and insufficient policy, custom, or ratification evidence.",
+    whatItEstablishes:
+      "The Department prevailed on the reviewed federal and negligence-per-se claims. Two state-law claims remained outside that ruling and were remanded according to the docket history.",
+    whatItDoesNotEstablish:
+      "The reviewed order does not establish the final outcome of the remanded state claims and should not be presented as a finding that every challenged act was proper.",
+    nextVerification: "Obtain the state-court docket and final disposition of the remanded negligence and state-constitutional claims.",
+    tags: ["sheriff", "Section 1983", "probable cause", "summary judgment", "state claims"],
+    sources: [
+      {
+        label: "Bonogofsky v. Big Horn County Sheriff's Department — June 1, 2010 order",
+        url: "https://law.justia.com/cases/federal/district-courts/montana/mtdce/1%3A2008cv00032/33757/62/",
+        kind: "Court order",
+        checkedOn: "2026-07-15",
+      },
+      {
+        label: "CourtListener docket — Bonogofsky v. Big Horn County Sheriff's Department",
+        url: "https://www.courtlistener.com/docket/4302665/bonogofsky-v-big-horn-county-sheriffs-department/",
+        kind: "Federal docket index",
+        checkedOn: "2026-07-15",
+      },
+    ],
+  },
+  {
+    id: "BHA-2026-003",
+    slug: "murrell-deela-guilty-plea",
+    title: "Former BIA officer pleaded guilty to sexual abuse of a minor and lying to federal investigators",
+    date: "2026-04-02",
+    year: 2026,
+    place: "Northern Cheyenne Reservation / federal court",
+    institution: "Bureau of Indian Affairs law enforcement / United States",
+    officialType: "Federal law enforcement prosecution",
+    theme: "Law enforcement & courts",
+    people: ["Murrell Deela"],
+    status: "Guilty plea",
+    publicationState: "Reviewed",
+    summary:
+      "The Justice Department announced that former BIA officer Murrell Deela pleaded guilty to sexual abuse involving a minor and lying to federal investigators. DOJ states that he was on duty and acting in his official capacity during the August 2024 encounter.",
+    whatItEstablishes:
+      "An official DOJ release establishes the guilty plea and describes the official-capacity conduct, false report, false statements, and ATF's finding that the patrol vehicle and video system were intentionally burned.",
+    whatItDoesNotEstablish:
+      "The release does not establish a sentence as of this review, does not say Deela pleaded guilty to setting the fire, and does not support attributing the offense to unrelated BIA personnel or the Northern Cheyenne Tribe.",
+    nextVerification: "Add the federal judgment and sentence after an official sentencing record is published.",
+    tags: ["BIA", "law enforcement", "guilty plea", "minor", "false statements", "evidence destruction"],
+    sources: [
+      {
+        label: "U.S. Department of Justice — Former BIA officer pleads guilty",
+        url: "https://www.justice.gov/opa/pr/former-bia-officer-pleads-guilty-sexual-abuse-minor-and-lying-investigators",
+        kind: "Official agency record",
+        checkedOn: "2026-07-15",
+      },
+    ],
+  },
+  {
+    id: "BHA-2004-001",
+    slug: "birdinground-bribery-conviction-affirmed",
+    title: "Federal bribery conviction of former Crow Tribal Chairman was affirmed on appeal",
+    date: "2004-08-24",
+    year: 2004,
+    place: "Crow Reservation / Ninth Circuit",
+    institution: "Crow Tribal Government / United States",
+    officialType: "Federal public-corruption prosecution and appeal",
+    theme: "Public money & audits",
+    people: ["Clifford G. Birdinground"],
+    status: "Criminal conviction",
+    publicationState: "Reviewed",
+    summary:
+      "Former Crow Tribal Chairman Clifford G. Birdinground pleaded guilty to receiving a bribe under 18 U.S.C. § 666. DOI OIG reported a sentence of 37 months in prison, 36 months of supervised release, and $11,100 restitution; the Ninth Circuit affirmed denial of his request to withdraw the plea.",
+    whatItEstablishes:
+      "The official and appellate records establish the bribery plea, reported sentence, restitution, and unsuccessful appeal in a vehicle-dealership payment scheme tied to tribal business.",
+    whatItDoesNotEstablish:
+      "The conviction does not prove every original allegation. Separate contractor payments described by DOI OIG were not charged against Birdinground under the plea agreement and are not presented here as counts of conviction.",
+    tags: ["Crow Tribe", "tribal chairman", "bribery", "restitution", "Ninth Circuit"],
+    sources: [
+      {
+        label: "United States v. Birdinground, 107 F. App'x 806",
+        url: "https://www.courtlistener.com/opinion/8455953/united-states-v-birdinground/",
+        kind: "Appellate disposition",
+        checkedOn: "2026-07-15",
+        note: "Unpublished, nonprecedential memorandum.",
+      },
+      {
+        label: "DOI OIG — Tribal chairman sentenced in vehicle-swapping scheme",
+        url: "https://www.doioig.gov/sites/default/files/2021-migration/Semiannual-OCT2003SAR.pdf",
+        kind: "Inspector General report",
+        checkedOn: "2026-07-15",
+      },
+    ],
+  },
+  {
+    id: "BHA-1991-001",
+    slug: "richard-real-bird-bank-fraud-conviction",
+    title: "Ninth Circuit affirmed former Crow Tribal Chairman's bank-fraud convictions and restitution",
+    date: "1991-11-07",
+    year: 1991,
+    place: "Crow Reservation / Ninth Circuit",
+    institution: "Crow Tribal Government / United States",
+    officialType: "Federal fraud prosecution and appeal",
+    theme: "Public money & audits",
+    people: ["Richard Real Bird"],
+    status: "Criminal conviction",
+    publicationState: "Reviewed",
+    summary:
+      "The Ninth Circuit affirmed Richard Real Bird's jury convictions for bank fraud, conspiracy, and fraudulent bank statements, along with the restitution order and use of a $56,591 loss figure at sentencing.",
+    whatItEstablishes:
+      "The appellate record establishes the jury verdict, sufficient-evidence ruling, rejected good-faith defense, restitution order, and affirmance.",
+    whatItDoesNotEstablish:
+      "This record is distinct from Real Bird's Crow Tribal Housing Authority case, does not establish present-day conduct, and comes from a nonprecedential memorandum.",
+    tags: ["Crow Tribe", "tribal chairman", "bank fraud", "conspiracy", "restitution"],
+    sources: [
+      {
+        label: "United States v. Richard Real Bird, 947 F.2d 952",
+        url: "https://law.justia.com/cases/federal/appellate-courts/F2/947/952/153303/",
+        kind: "Appellate disposition",
+        checkedOn: "2026-07-15",
+        note: "Unpublished, nonprecedential memorandum.",
+      },
+    ],
+  },
+  {
+    id: "BHA-1991-002",
+    slug: "richard-real-bird-housing-embezzlement-conviction",
+    title: "Ninth Circuit affirmed convictions for embezzlement from the Crow Tribal Housing Authority",
+    date: "1991-12-10",
+    year: 1991,
+    place: "Crow Reservation / Ninth Circuit",
+    institution: "Crow Tribal Housing Authority / United States",
+    officialType: "Federal tribal-funds prosecution and appeal",
+    theme: "Public money & audits",
+    people: ["Richard Real Bird"],
+    status: "Criminal conviction",
+    publicationState: "Reviewed",
+    summary:
+      "The Ninth Circuit affirmed Richard Real Bird's convictions for embezzlement of Crow Tribal Housing Authority funds and a $6,300 restitution order tied to authority-funded foundations for defendants' homes.",
+    whatItEstablishes:
+      "The appellate record establishes the distinct housing-authority embezzlement convictions, the court's sufficient-evidence conclusion, restitution, and affirmance.",
+    whatItDoesNotEstablish:
+      "It does not make every political-influence allegation a separate crime, is separate from the bank-fraud case, and is a nonprecedential memorandum.",
+    tags: ["Crow Tribe", "tribal chairman", "housing authority", "embezzlement", "restitution"],
+    sources: [
+      {
+        label: "United States v. Richard Real Bird, 949 F.2d 400",
+        url: "https://law.justia.com/cases/federal/appellate-courts/F2/949/400/82492/",
+        kind: "Appellate disposition",
+        checkedOn: "2026-07-15",
+        note: "Unpublished, nonprecedential memorandum.",
+      },
+    ],
+  },
+  {
+    id: "BHA-2005-001",
+    slug: "kelly-passes-conspiracy-obstruction-sentence",
+    title: "Former Crow finance director pleaded guilty and was sentenced in contract and legal-fee scheme",
+    date: "2005-03-31",
+    dateQualifier: "reporting period end",
+    year: 2005,
+    place: "Crow Reservation / federal court",
+    institution: "Crow Tribal Government / United States",
+    officialType: "Federal public-funds prosecution",
+    theme: "Public money & audits",
+    people: ["Kelly Passes"],
+    status: "Criminal conviction",
+    publicationState: "Reviewed",
+    summary:
+      "DOI OIG reported that former Crow Tribe Finance Director Kelly Passes pleaded guilty to four conspiracy counts and one obstruction count and received concurrent one-year custody terms plus $57,200 restitution.",
+    whatItEstablishes:
+      "The official OIG report establishes Passes's finance-director role, guilty pleas, sentence, restitution, and a fictitious or inflated contract scheme intended to generate money for Clifford Birdinground's legal defense.",
+    whatItDoesNotEstablish:
+      "The report does not give the exact plea or sentencing date and does not establish criminal responsibility for every person or contract mentioned. The displayed date is the reporting-period end, not the sentencing day.",
+    nextVerification: "Obtain the federal judgment to replace the reporting-period date with the exact sentencing date.",
+    tags: ["Crow Tribe", "finance director", "conspiracy", "obstruction", "restitution"],
+    sources: [
+      {
+        label: "DOI OIG — Crow finance director and others convicted and sentenced",
+        url: "https://www.doioig.gov/sites/default/files/2021-migration/Semiannual-APR2005SAR.pdf",
+        kind: "Inspector General report",
+        checkedOn: "2026-07-15",
+        note: "The card uses the report period's March 31, 2005 end date because the summary does not provide the sentencing day.",
+      },
+    ],
+  },
+  {
+    id: "BHA-2003-001",
+    slug: "charles-dillon-operation-card-trix",
+    title: "BIA facilities supervisor pleaded guilty and was sentenced in procurement-card kickback case",
+    date: "2003-09-30",
+    dateQualifier: "reporting period end",
+    year: 2003,
+    place: "Crow Agency / federal court",
+    institution: "Bureau of Indian Affairs / United States",
+    officialType: "Federal employee corruption prosecution",
+    theme: "Public money & audits",
+    people: ["Charles C. Dillon"],
+    status: "Criminal conviction",
+    publicationState: "Reviewed",
+    summary:
+      "DOI OIG reported that Charles C. Dillon, a BIA supervisor in the Crow Agency Facilities Management Branch, pleaded guilty to three bribery, two wire-fraud, and one false-statement count.",
+    whatItEstablishes:
+      "The official report establishes Dillon's supervisory role, guilty pleas, removal from federal service, 21-month prison sentence, 36 months of supervised release, and $72,216 restitution.",
+    whatItDoesNotEstablish:
+      "The record does not identify Dillon as a police officer or elected official and does not establish present or agency-wide BIA wrongdoing. The displayed date is the reporting-period end, not the sentencing day.",
+    nextVerification: "Obtain the federal judgment to add the precise sentencing date and docket number.",
+    tags: ["BIA", "Crow Agency", "bribery", "wire fraud", "procurement card", "restitution"],
+    sources: [
+      {
+        label: "DOI OIG — Operation Card Trix yields new charges in kickback scheme",
+        url: "https://www.doioig.gov/sites/default/files/2021-migration/Semiannual-OCT2003SAR.pdf",
+        kind: "Inspector General report",
+        checkedOn: "2026-07-15",
+        note: "The card uses the report period's September 30, 2003 end date because the summary does not provide the sentencing day.",
+      },
+    ],
+  },
+  {
+    id: "BHA-2003-002",
+    slug: "emmett-old-bull-illegal-gratuity",
+    title: "BIA accounting technician pleaded guilty to felony acceptance of an illegal gratuity",
+    date: "2003-09-30",
+    dateQualifier: "reporting period end",
+    year: 2003,
+    place: "Crow Agency / federal court",
+    institution: "Bureau of Indian Affairs / United States",
+    officialType: "Federal employee corruption prosecution",
+    theme: "Public money & audits",
+    people: ["Emmett Old Bull"],
+    status: "Criminal conviction",
+    publicationState: "Reviewed",
+    summary:
+      "DOI OIG reported that Emmett Old Bull, a BIA accounting technician in the Crow Agency Facilities Management Branch, pleaded guilty to felony acceptance of an illegal gratuity after soliciting and receiving payments connected to government-card purchases.",
+    whatItEstablishes:
+      "The official report establishes Old Bull's accounting role, guilty plea, resignation after indictment, and sentence of 36 months of supervised probation.",
+    whatItDoesNotEstablish:
+      "The record does not identify Old Bull as law enforcement or elected leadership and does not establish broader agency misconduct. The displayed date is the reporting-period end, not the sentencing day.",
+    nextVerification: "Obtain the federal judgment to add the precise plea and sentencing dates.",
+    tags: ["BIA", "Crow Agency", "illegal gratuity", "procurement card", "probation"],
+    sources: [
+      {
+        label: "DOI OIG — Operation Card Trix yields new charges in kickback scheme",
+        url: "https://www.doioig.gov/sites/default/files/2021-migration/Semiannual-OCT2003SAR.pdf",
+        kind: "Inspector General report",
+        checkedOn: "2026-07-15",
+        note: "The card uses the report period's September 30, 2003 end date because the summary does not provide the sentencing day.",
+      },
+    ],
+  },
+  {
+    id: "BHA-2024-005",
+    slug: "matthew-wald-judicial-complaint-dismissed",
+    title: "Judicial Standards Commission report lists a complaint involving District Judge Matthew Wald as dismissed",
+    date: "2024-12-09",
+    year: 2024,
+    place: "22nd Judicial District / Montana",
+    institution: "22nd Judicial District Court / Judicial Standards Commission",
+    officialType: "Judiciary",
+    theme: "Law enforcement & courts",
+    people: ["Matthew Wald"],
+    status: "Dismissed",
+    publicationState: "Reviewed",
+    summary:
+      "The Commission's 2023–2024 biennial report lists complaint 24-067, filed October 22, 2024, involving ex parte communication, impropriety, and judicial-opinion categories in a civil domestic-relations matter. It records dismissal on December 9, 2024.",
+    whatItEstablishes:
+      "An official state report establishes that a complaint was filed and dismissed, with no Commission recommendation and no Montana Supreme Court action listed.",
+    whatItDoesNotEstablish:
+      "A dismissed complaint is not discipline, a finding of misconduct, or proof that any allegation was true. One Commission member's request for a response does not change the recorded dismissal.",
+    tags: ["judicial standards", "district judge", "complaint", "dismissal", "domestic relations"],
+    sources: [
+      {
+        label: "Montana Judicial Standards Commission 2023–2024 biennial report",
+        url: "https://courts.mt.gov/Courts/boards/2025_JSC-Report_69th-Leglislature.pdf",
+        kind: "Official agency record",
+        checkedOn: "2026-07-15",
+        note: "Case 24-067 appears on report page 19.",
+      },
+      {
+        label: "Montana Courts — 22nd Judicial District roster",
+        url: "https://courts.mt.gov/CourtLocator/22ndJudicialDistrict",
+        kind: "Official agency record",
+        checkedOn: "2026-07-15",
+      },
+    ],
+  },
+  {
+    id: "BHA-2024-006",
+    slug: "crow-tribe-fy2021-single-audit",
+    title: "Federal Single Audit data records material weaknesses, material noncompliance, and repeated findings for the Crow Tribe's fiscal 2021 audit",
+    date: "2024-10-01",
+    dateQualifier: "FAC acceptance date",
+    year: 2024,
+    place: "Crow Reservation / Federal Audit Clearinghouse",
+    institution: "Crow Tribal Government / Federal Audit Clearinghouse",
+    officialType: "Federal Single Audit",
+    theme: "Public money & audits",
+    people: [],
+    status: "Audit finding",
+    publicationState: "Reviewed",
+    summary:
+      "Federal Audit Clearinghouse data for report 2021-09-GSAFAC-0000058213 records a disclaimer of opinion, material weaknesses in internal control, material noncompliance, and eleven unique findings for the fiscal year ending September 30, 2021. Ten findings repeat 2020 references and four flag questioned costs.",
+    whatItEstablishes:
+      "The official federal dataset establishes the independent Single Audit classifications, compliance and control findings, repeat-finding indicators, and $21,958,377 in federal expenditures reported for the audit period.",
+    whatItDoesNotEstablish:
+      "Audit classifications and questioned-cost flags do not by themselves establish theft, fraud, a total loss amount, criminal liability, or personal misconduct by any named leader. The public dataset does not expose the narrative audit PDF for this report.",
+    nextVerification: "Request the complete audit package and corrective-action plan, then track later Single Audits for resolved and repeated findings.",
+    tags: ["Crow Tribe", "Single Audit", "material weakness", "material noncompliance", "repeat findings", "questioned costs"],
+    sources: [
+      {
+        label: "Federal Audit Clearinghouse — 2024 general data CSV",
+        url: "https://app.fac.gov/dissemination/public-data/gsa/audit-year/2024-ay-general.csv",
+        kind: "Official agency record",
+        checkedOn: "2026-07-15",
+        note: "Filter report_id 2021-09-GSAFAC-0000058213.",
+      },
+      {
+        label: "Federal Audit Clearinghouse — 2024 findings data CSV",
+        url: "https://app.fac.gov/dissemination/public-data/gsa/audit-year/2024-ay-findings.csv",
+        kind: "Official agency record",
+        checkedOn: "2026-07-15",
+        note: "Filter report_id 2021-09-GSAFAC-0000058213; eleven unique finding references appear.",
+      },
+      {
+        label: "Federal Audit Clearinghouse data methodology",
+        url: "https://www.fac.gov/data/",
+        kind: "Official agency record",
+        checkedOn: "2026-07-15",
+      },
+    ],
+  },
+  {
+    id: "BHA-2013-001",
+    slug: "lawrence-big-hair-tribal-charges-dismissed",
+    title: "Contemporaneous news report says all seven misdemeanor charges against then-Sheriff Lawrence Big Hair were dismissed",
+    date: "2013-08-21",
+    year: 2013,
+    place: "Crow Tribal Court / Big Horn County",
+    institution: "Big Horn County Sheriff / Crow Tribal Court",
+    officialType: "Reported criminal-case disposition",
+    theme: "Law enforcement & courts",
+    people: ["Lawrence Pete Big Hair"],
+    status: "Dismissed",
+    publicationState: "Current docket needed",
+    summary:
+      "KULR reported that Crow Tribal Court officials dismissed all seven misdemeanor charges against then-Big Horn County Sheriff Lawrence Big Hair. The current County roster identifies Lawrence Pete Big Hair as the District 2 county commissioner.",
+    whatItEstablishes:
+      "A dated contemporaneous news report documents the reported dismissal, and an official County page documents the current elected role.",
+    whatItDoesNotEstablish:
+      "Without the tribal-court order and register of actions, this entry does not state the dismissal basis or treat the original allegations as proven. It is not evidence of current wrongdoing in the commissioner's office.",
+    nextVerification: "Obtain the Crow Tribal Court dismissal order, complete case register, and any final state-investigation disposition before expanding the history.",
+    tags: ["former sheriff", "tribal court", "dismissal", "county commissioner", "docket needed"],
+    sources: [
+      {
+        label: "KULR — Charges Dismissed",
+        url: "https://www.kulr8.com/news/charges-dismissed/article_c8a86464-9225-5444-9829-c0828d141b3a.html",
+        kind: "News report",
+        checkedOn: "2026-07-15",
+        note: "Secondary disposition report; the tribal-court order remains the preferred source.",
+      },
+      {
+        label: "Big Horn County — Commissioners",
+        url: "https://www.bighorncountymt.gov/182/Big-Horn-County-Commissioners",
+        kind: "Official agency record",
+        checkedOn: "2026-07-15",
+      },
+    ],
+  },
 ];
 
 export const statusDefinitions: Record<RecordStatus, string> = {
@@ -839,6 +1275,10 @@ export const statusDefinitions: Record<RecordStatus, string> = {
     "A court allowed a claim to continue at pleading, screening, or summary judgment; liability was not necessarily established.",
   "Criminal conviction":
     "A court entered a criminal conviction. The card remains limited to the named defendant, counts, and reviewed disposition.",
+  "Guilty plea":
+    "A defendant entered a guilty plea. Sentencing or final judgment may still be pending and is not inferred unless the reviewed source supplies it.",
+  "Rule 68 judgment":
+    "A court entered judgment after an accepted offer under Federal Rule of Civil Procedure 68; terms and admissions are not inferred from the docket label alone.",
   "Defendant prevailed":
     "The identified defendant won the reviewed claim or case; the allegation must not be presented as proven.",
   "Filed allegation":
@@ -864,4 +1304,4 @@ export const statuses = Array.from(new Set(records.map((record) => record.status
 
 export const themes = Array.from(new Set(records.map((record) => record.theme))).sort();
 
-export const lastEditorialReview = "July 14, 2026";
+export const lastEditorialReview = "July 15, 2026";
