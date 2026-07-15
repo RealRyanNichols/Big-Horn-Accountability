@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, BookOpenCheck, ShieldCheck } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, BookOpenCheck, Building2, ShieldCheck, UserRound } from "lucide-react";
 import { RecordCard } from "@/components/record-card";
 import { RecordVisitCounter } from "@/components/visit-counter";
+import { getProfilesForRecord } from "@/lib/profiles";
 import { records } from "@/lib/records";
 
 interface RecordDetailPageProps {
@@ -44,6 +45,7 @@ export default async function RecordDetailPage({ params }: RecordDetailPageProps
   const { slug } = await params;
   const record = recordForSlug(slug);
   if (!record) notFound();
+  const relatedProfiles = getProfilesForRecord(record.id);
 
   return (
     <section className="record-detail-page">
@@ -67,6 +69,28 @@ export default async function RecordDetailPage({ params }: RecordDetailPageProps
             person, and the counter stores no IP address or user-agent string.
           </p>
         </div>
+
+        {relatedProfiles.length > 0 && (
+          <section className="record-related-profiles" aria-labelledby="record-related-profiles-heading">
+            <div className="record-related-profiles-heading">
+              <div>
+                <p className="eyebrow">Accountability index</p>
+                <h2 id="record-related-profiles-heading">Profiles linked to this record</h2>
+              </div>
+              <p>Connections mean the profile is explicitly tied to this ledger entry. They do not imply guilt, coordination, or current employment.</p>
+            </div>
+            <div className="record-related-profile-grid">
+              {relatedProfiles.map((profile) => (
+                <Link href={`/profiles/${profile.slug}`} key={profile.slug}>
+                  <span>{profile.kind === "Person" ? <UserRound size={15} /> : <Building2 size={15} />}{profile.kind}</span>
+                  <strong>{profile.name}</strong>
+                  <small>{profile.role} · {profile.posture}</small>
+                  <ArrowUpRight size={16} aria-hidden="true" />
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
       </div>
     </section>
   );

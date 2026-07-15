@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
 import { AlertTriangle, CheckCircle2, CircleDot, Clock3, Database, FileSearch, Rocket, ShieldCheck } from "lucide-react";
+import { profiles } from "@/lib/profiles";
+import { records } from "@/lib/records";
 
 export const metadata: Metadata = { title: "Project status" };
 
+const reviewedRecordCount = records.filter((record) => record.publicationState === "Reviewed").length;
+const reviewProgress = Math.round((reviewedRecordCount / records.length) * 100);
+
 const tracks = [
-  { name: "Dashboard product", progress: 94, detail: "Guided investigations, filters, evidence cards, oversight directory, share tools, and story builder are implemented." },
-  { name: "Source verification", progress: 74, detail: "Twenty-four records are labeled; primary docket and later-history checks remain for several cases." },
+  { name: "Dashboard product", progress: 97, detail: `Guided investigations, filters, evidence cards, ${profiles.length} bounded profiles, share tools, and story builder are implemented.` },
+  { name: "Source verification", progress: reviewProgress, detail: `${reviewedRecordCount} of ${records.length} records are source-reviewed; live docket and later-history checks remain for the others.` },
   { name: "Privacy and security", progress: 72, detail: "The dashboard is public; intake remains closed pending operational privacy controls." },
   { name: "Design and deployment", progress: 90, detail: "Responsive story design, social preview, and Vercel production deployment are live; Figma refinement continues." },
 ];
@@ -18,6 +23,7 @@ const completed = [
   "Institution, records-custodian, and oversight-route directory",
   "Live speech-to-text drafting with visible interim transcript",
   "Six source-backed investigation chapters and visual timelines",
+  `${records.length} evidence records and ${profiles.length} bounded person or institution profiles`,
   "Watch, read, and inspect media shelf with direct source links",
   "Production Vercel deployment with public sharing and social preview",
   "Build, typecheck, lint, and dependency audit passed",
@@ -33,7 +39,7 @@ const active = [
 const blocked = [
   "Community intake cannot open until Supabase is approved and a privacy contact, deletion route, reviewer access, and retention operations exist.",
   "Some public docket mirrors may be stale; those entries stay marked “Current docket needed.”",
-  "A separate GitHub source repository is still needed; the existing Ashby repository must not be reused for this standalone project.",
+  "Search-engine indexing remains intentionally paused until a final editorial and legal-risk review; the direct public link remains available.",
 ];
 
 export default function StatusPage() {
@@ -43,7 +49,7 @@ export default function StatusPage() {
         <div className="shell narrow">
           <p className="eyebrow"><CircleDot size={15} /> Working status</p>
           <h1>What is finished.<br /><span>What still needs proof.</span></h1>
-          <p>Updated July 14, 2026. Progress reflects the public research preview, not a claim that every local matter has been located or adjudicated.</p>
+          <p>Updated July 15, 2026. Progress reflects the public research preview, not a claim that every local matter has been located or adjudicated.</p>
         </div>
       </section>
 
@@ -51,7 +57,7 @@ export default function StatusPage() {
         <div className="overall-progress">
           <div>
             <p className="eyebrow"><Clock3 size={14} /> Overall estimate</p>
-            <strong>83%</strong>
+            <strong>88%</strong>
             <span>toward a defensible public research release</span>
           </div>
           <p>The product is farther along than the research. No entry advances merely because it is interesting; source quality and disposition determine publication readiness.</p>

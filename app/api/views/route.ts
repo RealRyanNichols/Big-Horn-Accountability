@@ -1,5 +1,6 @@
 import { createHmac, randomBytes } from "node:crypto";
 import { NextRequest, NextResponse } from "next/server";
+import { profiles } from "@/lib/profiles";
 import { records } from "@/lib/records";
 
 export const dynamic = "force-dynamic";
@@ -8,11 +9,13 @@ export const runtime = "nodejs";
 const visitorCookieName = "bha_browser_visit";
 const visitorCookiePattern = /^[A-Za-z0-9_-]{43}$/;
 const recordSlugs = new Set(records.map((record) => record.slug));
+const profileSlugs = new Set(profiles.map((profile) => profile.slug));
 const maxRequestBytes = 512;
 
 type CounterRequest =
   | { kind: "site" }
-  | { kind: "record"; slug: string };
+  | { kind: "record"; slug: string }
+  | { kind: "profile"; slug: string };
 
 class RequestTooLargeError extends Error {}
 
@@ -53,6 +56,13 @@ function resolveSubject(body: unknown) {
   ) {
     return `record:${candidate.slug}`;
   }
+  if (
+    candidate.kind === "profile" &&
+    typeof candidate.slug === "string" &&
+    profileSlugs.has(candidate.slug)
+  ) {
+    return `profile:${candidate.slug}`;
+  }
 
   return null;
 }
@@ -72,6 +82,9 @@ function resolveQuerySubject(request: NextRequest) {
   }
   if (kinds[0] === "record" && slugs.length === 1) {
     return resolveSubject({ kind: "record", slug: slugs[0] });
+  }
+  if (kinds[0] === "profile" && slugs.length === 1) {
+    return resolveSubject({ kind: "profile", slug: slugs[0] });
   }
   return null;
 }

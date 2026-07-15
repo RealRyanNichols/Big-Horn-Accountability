@@ -5,7 +5,8 @@ import { useEffect, useState } from "react";
 
 type CounterSubject =
   | { kind: "site" }
-  | { kind: "record"; slug: string };
+  | { kind: "record"; slug: string }
+  | { kind: "profile"; slug: string };
 
 type CounterResult = {
   available: boolean;
@@ -41,7 +42,7 @@ let counterRequestQueue: Promise<unknown> = Promise.resolve();
 const countFormatter = new Intl.NumberFormat("en-US");
 
 function subjectKey(subject: CounterSubject) {
-  return subject.kind === "site" ? "site:all" : `record:${subject.slug}`;
+  return subject.kind === "site" ? "site:all" : `${subject.kind}:${subject.slug}`;
 }
 
 function parseCounterResponse(response: Response, result: Partial<CounterResult>) {
@@ -100,7 +101,7 @@ function readCounter(subject: CounterSubject) {
   if (existing) return existing;
 
   const parameters = new URLSearchParams({ kind: subject.kind });
-  if (subject.kind === "record") parameters.set("slug", subject.slug);
+  if (subject.kind !== "site") parameters.set("slug", subject.slug);
 
   const request = (async (): Promise<CounterResult> => {
     try {
@@ -129,7 +130,10 @@ function getCounterChannel(subject: CounterSubject) {
   if (existing) return existing;
 
   const channel: CounterChannel = {
-    subject: subject.kind === "site" ? { kind: "site" } : { kind: "record", slug: subject.slug },
+    subject:
+      subject.kind === "site"
+        ? { kind: "site" }
+        : { kind: subject.kind, slug: subject.slug },
     result: null,
     subscribers: new Set(),
     active: false,
@@ -321,6 +325,22 @@ export function RecordVisitCounter({
     <UniqueBrowserVisitCounter
       subject={{ kind: "record", slug }}
       label="unique browser story views"
+      className={className}
+    />
+  );
+}
+
+export function ProfileVisitCounter({
+  slug,
+  className,
+}: {
+  slug: string;
+  className?: string;
+}) {
+  return (
+    <UniqueBrowserVisitCounter
+      subject={{ kind: "profile", slug }}
+      label="unique browser profile views"
       className={className}
     />
   );

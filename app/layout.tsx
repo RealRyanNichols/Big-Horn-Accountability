@@ -23,7 +23,7 @@ export const metadata: Metadata = {
         url: "/opengraph-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Big Horn Accountability — the stories they don't want told",
+        alt: "Big Horn Accountability public-record research dashboard",
       },
     ],
   },

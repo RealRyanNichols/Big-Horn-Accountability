@@ -11,17 +11,23 @@ import {
   FileText,
   Gavel,
   ExternalLink,
+  Building2,
+  UserRound,
 } from "lucide-react";
 import { RecordExplorer } from "@/components/record-explorer";
 import { ShareSiteButton } from "@/components/share-site-button";
 import { EvidenceNetwork } from "@/components/evidence-network";
 import { SiteVisitCounter } from "@/components/visit-counter";
 import { investigationThreads, recordsForThread } from "@/lib/investigation-threads";
+import { profiles } from "@/lib/profiles";
 import { lastEditorialReview, records } from "@/lib/records";
 
 export default function HomePage() {
   const reviewed = records.filter((record) => record.publicationState === "Reviewed").length;
   const docketRefreshes = records.length - reviewed;
+  const peopleProfiles = profiles.filter((profile) => profile.kind === "Person");
+  const institutionProfiles = profiles.filter((profile) => profile.kind === "Institution");
+  const featuredProfiles = [...peopleProfiles.slice(0, 4), ...institutionProfiles.slice(0, 2)];
 
   return (
     <>
@@ -125,6 +131,38 @@ export default function HomePage() {
       </section>
 
       <EvidenceNetwork records={records} />
+
+      <section className="profile-entry-section" aria-labelledby="profile-entry-title">
+        <div className="shell profile-entry-grid">
+          <div className="profile-entry-copy">
+            <p className="eyebrow">Accountability profiles</p>
+            <h2 id="profile-entry-title">Follow the public role through the record.</h2>
+            <p>
+              People, offices, courts, law-enforcement agencies, tribal institutions, and oversight bodies now have their own evidence-bounded pages. Each page keeps convictions, findings, dismissals, allegations, and neutral role records in separate lanes.
+            </p>
+            <div className="profile-entry-stats" aria-label="Profile directory summary">
+              <div><strong>{profiles.length}</strong><span>profiles</span></div>
+              <div><strong>{peopleProfiles.length}</strong><span>people</span></div>
+              <div><strong>{institutionProfiles.length}</strong><span>institutions</span></div>
+            </div>
+            <Link className="button primary" href="/profiles">Explore every profile <ArrowRight size={17} /></Link>
+          </div>
+          <div className="profile-entry-list">
+            {featuredProfiles.map((profile, index) => (
+              <Link href={`/profiles/${profile.slug}`} key={profile.slug}>
+                <span className="profile-entry-index">{String(index + 1).padStart(2, "0")}</span>
+                <span className="profile-entry-kind">
+                  {profile.kind === "Person" ? <UserRound size={14} /> : <Building2 size={14} />}
+                  {profile.role}
+                </span>
+                <strong>{profile.name}</strong>
+                <small>{profile.records.length} linked record{profile.records.length === 1 ? "" : "s"} · {profile.posture}</small>
+                <ArrowRight size={16} aria-hidden="true" />
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <section className="evidence-bridge-section" aria-labelledby="evidence-bridge-title">
         <div className="shell evidence-bridge-shell">
