@@ -121,7 +121,7 @@ export default function InvestigationsPage() {
                       <div className="timeline-links">
                         <Link href={`/#${record.id}`}>Ledger card <ArrowRight size={14} /></Link>
                         <a href={record.sources[0].url} target="_blank" rel="noreferrer">
-                          Primary source <ExternalLink size={13} />
+                          Open source <ExternalLink size={13} />
                         </a>
                       </div>
                     </article>

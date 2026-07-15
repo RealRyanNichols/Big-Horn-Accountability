@@ -45,7 +45,8 @@ export interface EvidenceProfile extends ProfileDefinition {
 }
 
 export type ProfilePosture =
-  | "Adjudicated or official outcome"
+  | "Recorded disposition or official outcome"
+  | "Dismissed / no adverse finding"
   | "Mixed record"
   | "Allegation only"
   | "Procedural or operational record"
@@ -98,7 +99,7 @@ const profileDefinitions: ProfileDefinition[] = [
     kind: "Person",
     role: "County commissioner",
     jurisdiction: "Big Horn County",
-    descriptor: "Current District 2 county commissioner and former Big Horn County sheriff whose 2013 tribal-court charges were reported dismissed.",
+    descriptor: "Former Big Horn County sheriff whose 2013 tribal-court charges were reported dismissed; an official County page reviewed July 15, 2026 identifies him as the District 2 commissioner.",
     scopeNote: "The dismissal is documented by contemporaneous reporting, but the underlying tribal-court order remains sought. It is not evidence of current wrongdoing or a merits finding about the original allegations.",
     recordIds: ["BHA-2013-001"],
   },
@@ -398,7 +399,7 @@ const profileDefinitions: ProfileDefinition[] = [
     kind: "Institution",
     role: "Tribal government",
     jurisdiction: "Crow Reservation",
-    descriptor: "Tribal government and related offices appearing in reviewed grant-oversight and federal criminal records.",
+    descriptor: "Institutional context for reviewed records involving named former officials or employees plus separate grant and audit records.",
     scopeNote: "The records are limited to specified programs, offices, and named defendants. They do not establish wrongdoing by the Tribe generally.",
     recordIds: ["BHA-1990-001", "BHA-1991-001", "BHA-1991-002", "BHA-2000-001", "BHA-2004-001", "BHA-2005-001", "BHA-2015-001", "BHA-2016-003", "BHA-2017-001", "BHA-2024-004", "BHA-2024-006", "BHA-2025-006"],
   },
@@ -408,8 +409,8 @@ const profileDefinitions: ProfileDefinition[] = [
     kind: "Institution",
     role: "Tribal government",
     jurisdiction: "Northern Cheyenne Reservation",
-    descriptor: "Tribal government connected to a reviewed federal conviction involving a former tribal president.",
-    scopeNote: "The conviction concerns one named defendant and defined travel-reimbursement conduct, not the Tribe generally.",
+    descriptor: "Institutional context for a reviewed conviction involving a former tribal president plus a separate Single Audit record.",
+    scopeNote: "The conviction concerns one named defendant and defined travel-reimbursement conduct; the audit is limited to its named period and findings. Neither establishes wrongdoing by the Tribe generally.",
     recordIds: ["BHA-2019-001", "BHA-2025-005"],
   },
   {
@@ -493,16 +494,26 @@ const proceduralStatuses = new Set<RecordStatus>([
   "Procedural ruling",
 ]);
 
+const nonAdverseStatuses = new Set<RecordStatus>([
+  "Defendant prevailed",
+  "Dismissed",
+  "No-charge decision",
+  "Stipulated dismissal",
+]);
+
 function derivePosture(linkedRecords: LedgerRecord[]): ProfilePosture {
   const statusSet = new Set(linkedRecords.map((record) => record.status));
   if (statusSet.size === 1 && statusSet.has("Filed allegation")) return "Allegation only";
   if (statusSet.size === 1 && statusSet.has("Leadership record")) return "Context record";
+  if (linkedRecords.every((record) => nonAdverseStatuses.has(record.status))) {
+    return "Dismissed / no adverse finding";
+  }
   const hasOutcome = linkedRecords.some((record) => outcomeStatuses.has(record.status));
   const hasInterim = linkedRecords.some(
     (record) => proceduralStatuses.has(record.status) || record.status === "Filed allegation" || record.status === "Leadership record",
   );
   if (hasOutcome && hasInterim) return "Mixed record";
-  if (hasOutcome) return "Adjudicated or official outcome";
+  if (hasOutcome) return "Recorded disposition or official outcome";
   if (hasInterim) return "Procedural or operational record";
   return "Context record";
 }

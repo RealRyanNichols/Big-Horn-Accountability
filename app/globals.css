@@ -1846,6 +1846,7 @@ button, summary, a { -webkit-tap-highlight-color: transparent; }
 .profile-kind-badge { padding: 6px 8px; background: var(--green-soft); border-radius: 999px; }
 .profile-posture { max-width: 168px; justify-content: flex-end; text-align: right; line-height: 1.2; }
 .profile-posture.allegation-only { color: #865f23; }
+.profile-posture.dismissed-\/-no-adverse-finding { color: #65736c; }
 .profile-posture.context-record { color: #65736c; }
 .profile-card-heading { margin-top: 23px; }
 .profile-card-heading > p { margin: 0; color: var(--gold); font-size: 9px; font-weight: 830; letter-spacing: .07em; text-transform: uppercase; }

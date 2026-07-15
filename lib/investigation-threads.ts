@@ -23,7 +23,7 @@ export const investigationThreads: InvestigationThread[] = [
     dateRange: "2003–2026",
     dek: "Defense judgments, civil-rights pleadings and resolutions, judicial-complaint dismissals, an officer-certification settlement, dispatch friction, and leadership litigation form a record that deserves to be read in sequence.",
     thesis:
-      "Taken together, the sources document recurring conflict and accountability pressure around Hardin public safety—not a proven single scheme.",
+      "The sources document multiple distinct public-safety disputes and proceedings across Hardin and the wider Big Horn region; they do not establish a single pattern or scheme.",
     limit:
       "Separate episodes cannot be treated as coordinated misconduct without evidence connecting the people, decisions, and intent.",
     theme: "Law enforcement & courts",
@@ -55,7 +55,7 @@ export const investigationThreads: InvestigationThread[] = [
     dateRange: "1979–2021",
     dek: "Montana and federal courts have repeatedly been asked to review deaths, medical care, force, and living conditions connected to local custody.",
     thesis:
-      "The record shows that custody conditions have generated serious litigation across decades, with materially different outcomes.",
+      "Deaths and allegations concerning medical care, force, and living conditions have generated litigation with materially different outcomes.",
     limit:
       "A claim surviving one stage is not a final finding; a government victory does not erase the historical allegation that brought the case to court.",
     theme: "Detention & custody",
@@ -68,7 +68,7 @@ export const investigationThreads: InvestigationThread[] = [
     eyebrow: "Debt, development, and the empty jail",
     title: "$27 million and an empty facility",
     dateRange: "2007–2009",
-    dek: "Hardin’s detention project became a national symbol of speculative public development after the facility opened without prisoners and the bonds defaulted.",
+    dek: "Hardin’s detention project drew national attention after the facility opened without prisoners and the revenue bonds later defaulted.",
     thesis:
       "Official legislative material documents the project’s financing, regulatory mismatch, vacancy, and the public consequences of a failed operating plan.",
     limit:
@@ -81,11 +81,11 @@ export const investigationThreads: InvestigationThread[] = [
     id: "public-money",
     number: "04",
     eyebrow: "Audits, grants, and public trust",
-    title: "When oversight arrives after the money moves",
+    title: "What the audits, convictions, and findings show",
     dateRange: "1990–2025",
-    dek: "Federal opinions, prosecutions, inspector-general reports, and Single Audits document distinct failures involving grants, reimbursements, contracts, reporting, and institutional controls.",
+    dek: "Federal opinions, prosecutions, inspector-general reports, and Single Audits document specific convictions, audit deficiencies, and oversight findings across public, tribal, and federally funded entities.",
     thesis:
-      "These records contain verified audit findings and convictions—not merely community rumor—and identify where oversight controls broke down.",
+      "The set contains final convictions and official audit findings, each limited to its named person, entity, period, and legal label.",
     limit:
       "Questioned or unsupported costs are not automatically theft; each audit finding and criminal judgment must retain its own legal label.",
     theme: "Public money & audits",
@@ -121,10 +121,10 @@ export const investigationThreads: InvestigationThread[] = [
     number: "05",
     eyebrow: "Voting power and equal participation",
     title: "Who gets heard—and who gets represented",
-    dateRange: "1986–present",
+    dateRange: "1986",
     dek: "A landmark federal voting-rights judgment found Big Horn County election systems unlawfully diluted Native voting strength.",
     thesis:
-      "This is a final merits finding and an essential historical anchor for understanding present-day public trust.",
+      "This is a final merits finding and an essential historical anchor for understanding historical public trust.",
     limit:
       "A historic judgment does not, by itself, prove that every later election or officeholder violated the law.",
     theme: "Civil & voting rights",
@@ -135,7 +135,7 @@ export const investigationThreads: InvestigationThread[] = [
     id: "death-investigations",
     number: "06",
     eyebrow: "MMIP and the limits of official closure",
-    title: "A closed case is not the same as an answered question",
+    title: "What official closure does—and does not—resolve",
     dateRange: "2019–2020",
     dek: "Federal no-charge decisions and civil litigation can close legal pathways while families and communities continue to seek a fuller account.",
     thesis:

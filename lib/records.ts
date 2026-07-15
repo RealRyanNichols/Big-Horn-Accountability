@@ -577,7 +577,7 @@ export const records: LedgerRecord[] = [
   {
     id: "BHA-2023-002",
     slug: "crow-northern-cheyenne-hospital-background-check-audit",
-    title: "HHS Inspector General found widespread background-check and supervision deficiencies at the Crow/Northern Cheyenne Hospital",
+    title: "HHS Inspector General found background-check deficiencies in 44 of 50 sampled files and supervision deficiencies in 47 of 50",
     date: "2023-04-21",
     year: 2023,
     place: "Crow Agency / Indian Health Service",
@@ -940,11 +940,11 @@ export const records: LedgerRecord[] = [
     summary:
       "The Justice Department announced that former BIA officer Murrell Deela pleaded guilty to sexual abuse involving a minor and lying to federal investigators. DOJ states that he was on duty and acting in his official capacity during the August 2024 encounter.",
     whatItEstablishes:
-      "An official DOJ release establishes the guilty plea and describes the official-capacity conduct, false report, false statements, and ATF's finding that the patrol vehicle and video system were intentionally burned.",
+      "An official DOJ release establishes the guilty plea and describes the official-capacity conduct, false report, and false statements. The release separately says ATF concluded that the patrol vehicle and video system were intentionally burned.",
     whatItDoesNotEstablish:
       "The release does not establish a sentence as of this review, does not say Deela pleaded guilty to setting the fire, and does not support attributing the offense to unrelated BIA personnel or the Northern Cheyenne Tribe.",
     nextVerification: "Add the federal judgment and sentence after an official sentencing record is published.",
-    tags: ["BIA", "law enforcement", "guilty plea", "minor", "false statements", "evidence destruction"],
+    tags: ["BIA", "law enforcement", "guilty plea", "minor", "false statements", "vehicle-fire investigation"],
     sources: [
       {
         label: "U.S. Department of Justice — Former BIA officer pleads guilty",
@@ -1160,7 +1160,7 @@ export const records: LedgerRecord[] = [
     status: "Dismissed",
     publicationState: "Reviewed",
     summary:
-      "The Commission's 2023–2024 biennial report lists complaint 24-067, filed October 22, 2024, involving ex parte communication, impropriety, and judicial-opinion categories in a civil domestic-relations matter. It records dismissal on December 9, 2024.",
+      "The Commission's 2023–2024 biennial report lists complaint 24-067, filed October 22, 2024, and records its dismissal on December 9, 2024. No Commission recommendation or Montana Supreme Court action is listed.",
     whatItEstablishes:
       "An official state report establishes that a complaint was filed and dismissed, with no Commission recommendation and no Montana Supreme Court action listed.",
     whatItDoesNotEstablish:
@@ -1675,7 +1675,7 @@ export const statusDefinitions: Record<RecordStatus, string> = {
   "Administrative settlement":
     "An agency and a subject resolved an administrative matter without a judicial merits trial.",
   "Audit finding":
-    "An authorized auditor or inspector general documented a defined deficiency, questioned cost, misuse, or oversight failure.",
+    "An auditor or inspector general documented a source-specific condition, such as a deficiency, questioned cost, misuse, or oversight issue. This label does not imply criminal conduct.",
   "Claim survived this stage":
     "A court allowed a claim to continue at pleading, screening, or summary judgment; liability was not necessarily established.",
   "Criminal conviction":
