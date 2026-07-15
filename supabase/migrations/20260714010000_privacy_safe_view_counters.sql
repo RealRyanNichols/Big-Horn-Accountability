@@ -6,7 +6,7 @@ create table if not exists private.unique_browser_visits (
   subject_key text not null
     check (
       char_length(subject_key) between 1 and 127
-      and subject_key ~ '^(site:all|record:[a-z0-9][a-z0-9-]{0,119})$'
+      and subject_key ~ '^(site:all|(record|profile):[a-z0-9][a-z0-9-]{0,119})$'
     ),
   visitor_hash text not null
     check (visitor_hash ~ '^[0-9a-f]{64}$'),
@@ -18,7 +18,7 @@ create table if not exists private.unique_browser_visit_totals (
   subject_key text primary key
     check (
       char_length(subject_key) between 1 and 127
-      and subject_key ~ '^(site:all|record:[a-z0-9][a-z0-9-]{0,119})$'
+      and subject_key ~ '^(site:all|(record|profile):[a-z0-9][a-z0-9-]{0,119})$'
     ),
   unique_browser_visits bigint not null default 0
     check (unique_browser_visits >= 0),
@@ -47,7 +47,7 @@ declare
 begin
   if p_subject_key is null
      or char_length(p_subject_key) not between 1 and 127
-     or p_subject_key !~ '^(site:all|record:[a-z0-9][a-z0-9-]{0,119})$' then
+     or p_subject_key !~ '^(site:all|(record|profile):[a-z0-9][a-z0-9-]{0,119})$' then
     raise exception 'invalid counter subject' using errcode = '22023';
   end if;
 
@@ -115,7 +115,7 @@ declare
 begin
   if p_subject_key is null
      or char_length(p_subject_key) not between 1 and 127
-     or p_subject_key !~ '^(site:all|record:[a-z0-9][a-z0-9-]{0,119})$' then
+     or p_subject_key !~ '^(site:all|(record|profile):[a-z0-9][a-z0-9-]{0,119})$' then
     raise exception 'invalid counter subject' using errcode = '22023';
   end if;
 
