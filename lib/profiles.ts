@@ -12,6 +12,7 @@ export type ProfileRole =
   | "Tribal employee"
   | "Tribal finance official"
   | "Tribal executive"
+  | "Tribal housing"
   | "Municipal government"
   | "County government"
   | "Law enforcement agency"
@@ -21,7 +22,8 @@ export type ProfileRole =
   | "Federal employee"
   | "State oversight"
   | "Public health"
-  | "Public finance";
+  | "Public finance"
+  | "Public education";
 
 export interface ProfileDefinition {
   slug: string;
@@ -171,6 +173,16 @@ const profileDefinitions: ProfileDefinition[] = [
     recordIds: ["BHA-2026-003"],
   },
   {
+    slug: "marlin-d-yarlott",
+    name: "Marlin D. Yarlott",
+    kind: "Person",
+    role: "Federal law enforcement",
+    jurisdiction: "Crow Agency / Bureau of Indian Affairs",
+    descriptor: "Former BIA criminal investigator whose guilty plea, resignation, and sentence for keeping seized rifle evidence were reported by DOI OIG.",
+    scopeNote: "The Inspector General report establishes one adjudicated matter but does not state the exact sentencing date or support a broader claim about unrelated BIA or tribal personnel.",
+    recordIds: ["BHA-2003-003"],
+  },
+  {
     slug: "clifford-g-birdinground",
     name: "Clifford G. Birdinground",
     kind: "Person",
@@ -201,6 +213,26 @@ const profileDefinitions: ProfileDefinition[] = [
     recordIds: ["BHA-2005-001"],
   },
   {
+    slug: "theodore-j-hogan",
+    name: "Theodore J. Hogan",
+    kind: "Person",
+    role: "Tribal executive",
+    jurisdiction: "Crow Reservation",
+    descriptor: "Former elected Crow Tribe secretary and housing-authority executive director whose 1990 federal convictions and sentence were reported by DOI OIG.",
+    scopeNote: "The profile is limited to the 1990 convictions, incarceration, and restitution described by the official report. A separate 2006 indictment is not presented as a conviction because no final disposition was located.",
+    recordIds: ["BHA-1990-001"],
+  },
+  {
+    slug: "jovanna-wallace",
+    name: "Jovanna Wallace",
+    kind: "Person",
+    role: "Tribal employee",
+    jurisdiction: "Crow Reservation",
+    descriptor: "Former Crow Tribe employee whose bank-fraud and counterfeit-check convictions, sentence, and restitution were reported by DOI OIG.",
+    scopeNote: "The OIG report does not identify her job title or exact sentencing date, and the individual conviction does not establish wrongdoing by the Tribe or unrelated employees.",
+    recordIds: ["BHA-2000-001"],
+  },
+  {
     slug: "charles-c-dillon",
     name: "Charles C. Dillon",
     kind: "Person",
@@ -226,9 +258,9 @@ const profileDefinitions: ProfileDefinition[] = [
     kind: "Institution",
     role: "Municipal government",
     jurisdiction: "Hardin, Montana",
-    descriptor: "Municipal government appearing in reviewed records about detention, public-safety operations, civil litigation, and public finance.",
+    descriptor: "Municipal government appearing in reviewed records about detention, public-safety operations, civil litigation, and a complete FY2024 financial audit.",
     scopeNote: "Records span different decades, actors, and legal standards. Their inclusion together establishes an institutional timeline, not a single continuing scheme.",
-    recordIds: ["BHA-1979-001", "BHA-2008-001", "BHA-2022-001", "BHA-2024-001", "BHA-2026-001"],
+    recordIds: ["BHA-1979-001", "BHA-2008-001", "BHA-2022-001", "BHA-2024-001", "BHA-2025-004", "BHA-2026-001"],
   },
   {
     slug: "hardin-police-department",
@@ -248,7 +280,7 @@ const profileDefinitions: ProfileDefinition[] = [
     jurisdiction: "Big Horn County, Montana",
     descriptor: "County government connected to reviewed voting-rights, jail-conditions, law-enforcement-pursuit, and public-safety records.",
     scopeNote: "Each record has its own parties, period, outcome, and proof standard. This page is an index of those records, not a finding about every county office or employee.",
-    recordIds: ["BHA-1986-001", "BHA-2010-001", "BHA-2013-001", "BHA-2016-001", "BHA-2016-002", "BHA-2022-001", "BHA-2023-003"],
+    recordIds: ["BHA-1986-001", "BHA-2010-001", "BHA-2013-001", "BHA-2016-001", "BHA-2016-002", "BHA-2022-001", "BHA-2023-003", "BHA-2025-002", "BHA-2025-003"],
   },
   {
     slug: "big-horn-county-sheriff",
@@ -306,9 +338,59 @@ const profileDefinitions: ProfileDefinition[] = [
     kind: "Institution",
     role: "Public finance",
     jurisdiction: "Hardin, Montana",
-    descriptor: "Public-development authority connected to the reviewed legislative briefing on the Hardin detention project.",
-    scopeNote: "The briefing documented design, financing, occupancy, and default concerns; it did not adjudicate fraud or individual criminal liability.",
-    recordIds: ["BHA-2008-001"],
+    descriptor: "Public-development authority connected to the Hardin detention project and the City’s FY2024 component-unit audit disclaimer and repeat financial-reporting findings.",
+    scopeNote: "The records establish financing, vacancy, bond, and auditable-record problems. They do not establish fraud, missing money, that a disputed back-pay claim was valid, or personal criminal liability.",
+    recordIds: ["BHA-2008-001", "BHA-2025-004"],
+  },
+  {
+    slug: "city-of-hardin-tif-district",
+    name: "City of Hardin TIF District",
+    kind: "Institution",
+    role: "Public finance",
+    jurisdiction: "Hardin, Montana",
+    descriptor: "Municipal tax-increment financing district represented by a repeat FY2024 audit finding concerning revenue-bond arrears and agreement requirements.",
+    scopeNote: "The audit establishes the agreement default and reported principal and interest arrears. It attributes the revenue shortfall to a primary taxpayer bankruptcy and lower taxable value; it does not find fraud, diversion, or individual blame.",
+    recordIds: ["BHA-2025-004"],
+  },
+  {
+    slug: "hardin-fire-department-relief-association",
+    name: "Hardin Fire Department Relief Association",
+    kind: "Institution",
+    role: "Public finance",
+    jurisdiction: "Hardin, Montana",
+    descriptor: "Fire-relief pension institution represented by a repeat FY2024 accounting finding concerning the required actuarial valuation.",
+    scopeNote: "The audit establishes an accounting-compliance deficiency but says any valuation error would not be material to the aggregate opinion unit. It does not establish pension theft or loss.",
+    recordIds: ["BHA-2025-004"],
+  },
+  {
+    slug: "lodge-grass-school-district",
+    name: "Lodge Grass School District",
+    kind: "Institution",
+    role: "Public education",
+    jurisdiction: "Lodge Grass, Montana",
+    descriptor: "Public school district represented by a reviewed federal Single Audit record with a repeat late-reporting finding.",
+    scopeNote: "The audit establishes a reporting and documentation deficiency, not theft, fraud, or misconduct by any named administrator. No questioned costs were reported.",
+    recordIds: ["BHA-2025-007"],
+  },
+  {
+    slug: "crow-tribal-housing-authority",
+    name: "Crow Tribal Housing Authority",
+    kind: "Institution",
+    role: "Tribal housing",
+    jurisdiction: "Crow Reservation",
+    descriptor: "Historical tribal housing institution appearing in two reviewed federal conviction records involving former executives.",
+    scopeNote: "The convictions concern named individuals and defined historical conduct. They do not establish present-day wrongdoing, a continuous institutional practice, or liability for unrelated employees.",
+    recordIds: ["BHA-1990-001", "BHA-1991-002"],
+  },
+  {
+    slug: "apsaalooke-nation-housing-authority",
+    name: "Apsaalooke Nation Housing Authority",
+    kind: "Institution",
+    role: "Tribal housing",
+    jurisdiction: "Crow Reservation",
+    descriptor: "Tribal housing authority represented by a reviewed Single Audit record concerning repeat late filing and uninsured cash exposure.",
+    scopeNote: "The control finding describes potential loss exposure if a bank failed; it does not say that money was stolen, missing, or lost, and it assigns no personal criminal liability.",
+    recordIds: ["BHA-2024-007"],
   },
   {
     slug: "crow-tribal-government",
@@ -318,7 +400,7 @@ const profileDefinitions: ProfileDefinition[] = [
     jurisdiction: "Crow Reservation",
     descriptor: "Tribal government and related offices appearing in reviewed grant-oversight and federal criminal records.",
     scopeNote: "The records are limited to specified programs, offices, and named defendants. They do not establish wrongdoing by the Tribe generally.",
-    recordIds: ["BHA-1991-001", "BHA-1991-002", "BHA-2004-001", "BHA-2005-001", "BHA-2015-001", "BHA-2016-003", "BHA-2017-001", "BHA-2024-004", "BHA-2024-006"],
+    recordIds: ["BHA-1990-001", "BHA-1991-001", "BHA-1991-002", "BHA-2000-001", "BHA-2004-001", "BHA-2005-001", "BHA-2015-001", "BHA-2016-003", "BHA-2017-001", "BHA-2024-004", "BHA-2024-006", "BHA-2025-006"],
   },
   {
     slug: "northern-cheyenne-tribal-government",
@@ -328,7 +410,7 @@ const profileDefinitions: ProfileDefinition[] = [
     jurisdiction: "Northern Cheyenne Reservation",
     descriptor: "Tribal government connected to a reviewed federal conviction involving a former tribal president.",
     scopeNote: "The conviction concerns one named defendant and defined travel-reimbursement conduct, not the Tribe generally.",
-    recordIds: ["BHA-2019-001"],
+    recordIds: ["BHA-2019-001", "BHA-2025-005"],
   },
   {
     slug: "crow-tribal-police",
@@ -348,7 +430,7 @@ const profileDefinitions: ProfileDefinition[] = [
     jurisdiction: "Federal / Indian Country",
     descriptor: "Federal agency appearing in reviewed employee convictions, civil-rights and pursuit litigation, grant oversight, and a death-investigation charging decision.",
     scopeNote: "These records span distinct employees, programs, events, and legal standards. They do not establish a unified course of conduct or institutional guilt.",
-    recordIds: ["BHA-2003-001", "BHA-2003-002", "BHA-2016-003", "BHA-2019-002", "BHA-2023-003", "BHA-2024-003", "BHA-2026-003"],
+    recordIds: ["BHA-2003-001", "BHA-2003-002", "BHA-2003-003", "BHA-2016-003", "BHA-2019-002", "BHA-2023-003", "BHA-2024-003", "BHA-2026-003"],
   },
   {
     slug: "federal-bureau-of-investigation",

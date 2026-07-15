@@ -1331,21 +1331,6 @@ button, summary, a { -webkit-tap-highlight-color: transparent; }
 .form-actions button:disabled { cursor: not-allowed; opacity: .48; }
 .clear-button { margin-left: auto; min-height: 40px; display: inline-flex; align-items: center; gap: 6px; padding: 0 8px; color: var(--red); background: none; border: 0; font-size: 12px; font-weight: 700; cursor: pointer; }
 
-.gate-page { min-height: calc(100vh - 72px); padding: 70px 20px; display: grid; place-items: center; background: radial-gradient(circle at 50% 15%, #e2eee8 0, transparent 34%), var(--paper); }
-.gate-card { width: min(100%, 460px); padding: 36px; background: var(--card); border: 1px solid var(--line); border-radius: 24px; box-shadow: var(--shadow); }
-.gate-icon { width: 48px; height: 48px; display: grid; place-items: center; margin-bottom: 22px; color: white; background: var(--green); border-radius: 15px; }
-.gate-card h1 { margin: 0; font-family: Georgia, serif; font-size: 36px; line-height: 1.1; font-weight: 500; letter-spacing: -.025em; }
-.gate-card > p:not(.eyebrow):not(.gate-error) { margin: 12px 0 24px; color: var(--muted); }
-.gate-card form { display: grid; gap: 10px; }
-.gate-card label { color: #526159; font-size: 11px; font-weight: 750; }
-.password-field { height: 48px; display: flex; align-items: center; border: 1px solid #cfd5ce; border-radius: 11px; background: white; }
-.password-field:focus-within { border-color: var(--green); box-shadow: 0 0 0 3px rgba(31,91,72,.12); }
-.password-field input { flex: 1; min-width: 0; height: 46px; padding: 0 12px; border: 0; outline: 0; background: transparent; }
-.password-field button { width: 44px; height: 44px; display: grid; place-items: center; color: var(--muted); background: none; border: 0; cursor: pointer; }
-.gate-card form > .button { width: 100%; margin-top: 5px; border: 0; }
-.gate-error { margin: 3px 0 0; color: var(--red); font-size: 12px; }
-.gate-card small { display: block; margin-top: 20px; padding-top: 16px; color: #5c6963; border-top: 1px solid var(--line); font-size: 11px; }
-
 .directory-section { padding: 60px 0 90px; }
 .directory-note { margin-bottom: 20px; padding: 16px 18px; display: flex; align-items: flex-start; gap: 10px; color: #385648; background: var(--green-soft); border: 1px solid #bfd1c7; border-radius: 14px; }
 .directory-note svg { flex: 0 0 auto; margin-top: 2px; }
